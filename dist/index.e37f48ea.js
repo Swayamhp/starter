@@ -2204,9 +2204,8 @@ module.exports = function(scheduler, hasTimeArg) {
             if (state === GenStateExecuting) throw new Error("Generator is already running");
             if (state === GenStateCompleted) {
                 if (method === "throw") throw arg;
-                // Be forgiving, per GeneratorResume behavior specified since ES2015:
-                // ES2015 spec, step 3: https://262.ecma-international.org/6.0/#sec-generatorresume
-                // Latest spec, step 2: https://tc39.es/ecma262/#sec-generatorresume
+                // Be forgiving, per 25.3.3.3.3 of the spec:
+                // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
                 return doneResult();
             }
             context.method = method;
@@ -2260,7 +2259,7 @@ module.exports = function(scheduler, hasTimeArg) {
         var method = delegate.iterator[methodName];
         if (method === undefined) {
             // A .throw or .return when the delegate iterator has no .throw
-            // method, or a missing .next method, always terminate the
+            // method, or a missing .next mehtod, always terminate the
             // yield* loop.
             context.delegate = null;
             // Note: ["return"] must be used for ES3 parsing compatibility.
@@ -2385,7 +2384,7 @@ module.exports = function(scheduler, hasTimeArg) {
         };
     };
     function values(iterable) {
-        if (iterable != null) {
+        if (iterable) {
             var iteratorMethod = iterable[iteratorSymbol];
             if (iteratorMethod) return iteratorMethod.call(iterable);
             if (typeof iterable.next === "function") return iterable;
@@ -2403,7 +2402,10 @@ module.exports = function(scheduler, hasTimeArg) {
                 return next.next = next;
             }
         }
-        throw new TypeError(typeof iterable + " is not iterable");
+        // Return an iterator with no values.
+        return {
+            next: doneResult
+        };
     }
     exports.values = values;
     function doneResult() {
