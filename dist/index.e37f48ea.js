@@ -2886,7 +2886,7 @@ class RecipeView extends (0, _viewJsDefault.default) {
 }
 exports.default = new RecipeView();
 
-},{"../../img/icons.svg":"cMpiy","fractional":"MpFyt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./view.js":"bWlJ9"}],"cMpiy":[function(require,module,exports,__globalThis) {
+},{"../../img/icons.svg":"cMpiy","fractional":"3SU56","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./view.js":"bWlJ9"}],"cMpiy":[function(require,module,exports,__globalThis) {
 module.exports = require("17cff2908589362b").getBundleURL('hWUTQ') + "icons.21bad73c.svg" + "?" + Date.now();
 
 },{"17cff2908589362b":"lgJ39"}],"lgJ39":[function(require,module,exports,__globalThis) {
@@ -2924,7 +2924,7 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"MpFyt":[function(require,module,exports,__globalThis) {
+},{}],"3SU56":[function(require,module,exports,__globalThis) {
 /*
 fraction.js
 A Javascript fraction library.
